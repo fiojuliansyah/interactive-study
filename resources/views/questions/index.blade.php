@@ -44,6 +44,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Materi</th>
                                         <th>Pertanyaan</th>
                                         <th>Opsi Jawaban</th>
                                         <th>Jawaban</th>
@@ -53,7 +54,8 @@
                                 <tbody>
                                     @foreach ($questions as $question)
                                     <tr>
-                                        <td>{{ $question->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $question->material->title }} ({{ $question->material->type }})</td>
                                         <td>{{ $question->question }}</td>
                                        <td class="text-center">
                                             <div style="display: flex; flex-direction: column; align-items: flex-start;">
@@ -102,6 +104,15 @@
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="material_id">Materi</label>
+                                                            <select class="form-control" name="material_id" id="material_id">
+                                                                <option value="">Pilih Materi</option>
+                                                                @foreach ($materials as $material)
+                                                                    <option value="{{ $material->id }}" {{ $question->material_id == $material->id ? 'selected' : '' }}>{{ $material->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label for="question">Pertanyaan</label>
                                                             <input type="text" class="form-control" name="question" value="{{ $question->question }}">
@@ -158,6 +169,15 @@
             <form action="{{ route('questions.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="material_id">Materi</label>
+                        <select class="form-control" name="material_id" id="material_id">
+                            <option value="">Pilih Materi</option>
+                            @foreach ($materials as $material)
+                                <option value="{{ $material->id }}">{{ $material->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <!-- Pertanyaan -->
                     <div class="form-group">
                         <label for="question">Pertanyaan</label>

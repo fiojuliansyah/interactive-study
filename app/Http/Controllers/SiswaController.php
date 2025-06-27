@@ -43,4 +43,34 @@ class SiswaController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Jawaban berhasil disimpan.');
     }
+
+    public function kuisionerHasil()
+    {
+        $answers = Answer::where('user_id', Auth::id())
+                        ->with('question.material')
+                        ->get();
+
+        $totalAnswers = $answers->count();
+
+        $typeCounts = $answers->groupBy(function ($answer) {
+            return $answer->question->material->type;
+        })->map->count();
+
+        $typePercentages = $typeCounts->map(function ($count) use ($totalAnswers) {
+            return round(($count / $totalAnswers) * 100, 2);
+        });
+
+        $predictedType = $typeCounts->sortDesc()->keys()->first();
+
+        $wrongAnswers = $answers->filter(function ($answer) {
+            return $answer->answer !== $answer->question->answer;
+        });
+
+        return view('siswa.prediksi', compact('answers', 'predictedType', 'typePercentages', 'wrongAnswers'));
+    }
+
+
+
+
+
 }

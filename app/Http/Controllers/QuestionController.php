@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::paginate(10);
-        return view('questions.index', compact('questions'));
+        $materials = Material::all();
+        return view('questions.index', compact('questions','materials'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'material_id' => 'nullable|exists:materials,id',
             'question' => 'required|string|max:255',
             'answer' => 'required|string|max:255',
             'option_a' => 'nullable|string|max:255',
@@ -25,6 +28,7 @@ class QuestionController extends Controller
         ]);
 
         Question::create([
+            'material_id' => $request->input('material_id'),
             'question' => $request->input('question'),
             'answer' => $request->input('answer'),
             'option_a' => $request->input('option_a'),
@@ -39,6 +43,7 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'material_id' => 'nullable|exists:materials,id',
             'question' => 'required|string|max:255',
             'answer' => 'required|string|max:255',
             'option_a' => 'nullable|string|max:255',
@@ -49,6 +54,7 @@ class QuestionController extends Controller
 
         $question = Question::findOrFail($id);
         $question->update([
+            'material_id' => $request->input('material_id'),
             'question' => $request->input('question'),
             'answer' => $request->input('answer'),
             'option_a' => $request->input('option_a'),
