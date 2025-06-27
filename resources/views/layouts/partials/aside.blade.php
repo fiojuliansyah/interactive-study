@@ -81,6 +81,15 @@
           </a>
         </li>
         @endif
+         <li class="nav-item text-center mt-4">
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger" style="text-decoration: none;">
+              <div class="fas fa-sign-out-alt"></div>
+              <span class="nav-link-text ms-1">Logout</span>
+            </button>
+          </form>
+         </li>
       </ul>
     </div>
   </aside>
