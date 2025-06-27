@@ -44,7 +44,7 @@
             <span class="nav-link-text ms-1">Akses Materi</span>
           </a>
         </li>
-      
+        @if (Auth::user()->role == 'admin')
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin Page</h6>
         </li>
@@ -80,6 +80,7 @@
             <span class="nav-link-text ms-1">Kelola Materi</span>
           </a>
         </li>
+        @endif
       </ul>
     </div>
   </aside>
