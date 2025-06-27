@@ -28,9 +28,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false))
-                        ->with('success', 'Login berhasil. Selamat datang kembali!');
+        $user = Auth::user();
+
+        if ($user->role === 'siswa') {
+            return redirect()->route('siswa.dashboard')
+                            ->with('success', 'Login berhasil. Selamat datang, Siswa!');
+        } elseif ($user->role === 'admin') {
+            return redirect()->route('dashboard')
+                            ->with('success', 'Login berhasil. Selamat datang, Admin!');
+        }
+
+        return redirect('/')
+            ->with('error', 'Role tidak dikenali. Hubungi administrator.');
     }
+
 
 
     /**

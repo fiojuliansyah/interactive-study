@@ -14,45 +14,76 @@
             </div>
             <div class="card-body p-3">
               <div class="row">
-                @foreach ($materials as $material)  
-                    <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+              @foreach ($materials as $material)  
+                  <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                     <div class="card card-blog card-plain">
                         <div class="position-relative">
-                        <a class="d-block">
-                            <img src="../assets/img/home-decor-1.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-md">
-                        </a>
+                          <a class="d-block">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*ZdboO7zjowgjR_LOziPIog.jpeg" 
+                                alt="img" 
+                                class="img-fluid shadow border-radius-md" 
+                                style="height: 180px; object-fit: cover;">
+                          </a>
                         </div>
                         <div class="card-body px-1 pb-0">
-                        <p class="text-secondary mb-0 text-sm">{{ $material->type }}</p>
-                        <a href="javascript:;">
+                          <p class="text-secondary mb-0 text-sm">{{ $material->type }}</p>
+                          <a href="javascript:;">
                             <h5 class="font-weight-bolder">
                                 {{ $material->title }}
                             </h5>
-                        </a>
-                        <p class="mb-4 text-sm">
-                            {{ Str::limit($material->description, 100, '...') }}
-                        </p>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <button type="button" class="btn btn-outline-primary btn-sm mb-0">Lihat Materi</button>
-                            <div class="avatar-group mt-2">
-                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                                <img alt="Image placeholder" src="../assets/img/team-1.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                                <img alt="Image placeholder" src="../assets/img/team-2.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                                <img alt="Image placeholder" src="../assets/img/team-3.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                                <img alt="Image placeholder" src="../assets/img/team-4.jpg">
-                            </a>
+                          </a>
+                          <p class="mb-4 text-sm">
+                              {{ Str::limit($material->description, 100, '...') }}
+                          </p>
+                          <div class="d-flex align-items-center justify-content-between">
+                              <button type="button" class="btn btn-outline-primary btn-sm mb-0" 
+                                      data-bs-toggle="modal" data-bs-target="#modal-materi-{{ $material->id }}">
+                                  Lihat Materi
+                              </button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <!-- MODAL -->
+                  <div class="modal fade" id="modal-materi-{{ $material->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $material->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modalLabel{{ $material->id }}">{{ $material->title }}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                        </div>
+                        <div class="modal-body">
+                          @if($material->video)
+                            <div class="mb-3">
+                              <video controls width="100%">
+                                <source src="{{ asset('storage/' . $material->video) }}" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                              </video>
                             </div>
+                          @endif
+
+                          @if($material->sound)
+                            <div class="mb-3">
+                              <audio controls>
+                                <source src="{{ asset('storage/' . $material->sound) }}" type="audio/mpeg">
+                                Browser Anda tidak mendukung tag audio.
+                              </audio>
+                            </div>
+                          @endif
+
+                          @if($material->content)
+                            <div>
+                              {!! nl2br(e($material->content)) !!}
+                            </div>
+                          @else
+                            <p class="text-muted">Tidak ada konten tertulis.</p>
+                          @endif
                         </div>
-                        </div>
+                      </div>
                     </div>
-                    </div>
-                @endforeach
+                  </div>
+              @endforeach
               </div>
             </div>
           </div>
