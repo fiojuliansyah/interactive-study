@@ -75,13 +75,15 @@ class MaterialController extends Controller
             $soundPath = $request->file('sound')->store('sounds', 'public');
         }
 
+        $adminId = Auth::user()->id;
+
         $material->update([
             'title' => $request->input('title'),
             'video' => $videoPath, 
             'sound' => $soundPath, 
             'content' => $request->input('content'),
             'type' => $request->input('type', 'visual'),
-            'admin_id' => $request->input('admin_id'),
+            'admin_id' => $adminId,
         ]);
 
         return redirect()->route('materials.index')->with('success', 'Material updated successfully.');
