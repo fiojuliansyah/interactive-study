@@ -78,7 +78,7 @@
                             </span>
                             <span>
                                 Baca
-                                <a href="{{ route('siswa.materi') }}" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
+                                <a href="{{ route('siswa.materi') }}" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Materi</span>
                                     <svg
                                         width="10"
@@ -105,7 +105,7 @@
                             </span>
                             <span>
                                 Mengerjakan latihan soal di
-                                <a href="{{ route('siswa.kuisioner') }}" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
+                                <a href="{{ route('siswa.kuisioner') }}" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Kuisioner</span>
                                     <svg
                                         width="10"
@@ -132,7 +132,7 @@
                             </span>
                             <span>
                                 Lihat hasil
-                                <a href="{{ route('siswa.prediksi') }}" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
+                                <a href="{{ route('siswa.prediksi') }}" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Pediksi</span>
                                     <svg
                                         width="10"
@@ -154,7 +154,7 @@
                     </ul>
                     <ul class="flex gap-3 text-sm leading-normal">
                         <li>
-                            <a href="{{ route('login') }}" target="_blank" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
+                            <a href="{{ route('login') }}" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
                                 Login Now
                             </a>
                         </li>
