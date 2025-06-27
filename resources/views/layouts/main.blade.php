@@ -41,7 +41,7 @@
       <div class="alert alert-danger alert-dismissible fade show"
           role="alert"
           style="position: fixed; bottom: 80px; right: 20px; z-index: 9999; min-width: 250px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-          <strong>Login gagal!</strong> {{ $errors->first() }}
+          <strong>Gagal !</strong> {{ $errors->first() }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
   @endif
