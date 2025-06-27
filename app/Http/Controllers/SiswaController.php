@@ -41,7 +41,7 @@ class SiswaController extends Controller
             ]);
         }
 
-        return redirect()->route('dashboard')->with('success', 'Jawaban berhasil disimpan.');
+        return redirect()->route('siswa.prediksi')->with('success', 'Jawaban berhasil disimpan.');
     }
 
     public function kuisionerHasil()
@@ -50,14 +50,18 @@ class SiswaController extends Controller
                         ->with('question.material')
                         ->get();
 
-        $totalAnswers = $answers->count();
+        $correctAnswers = $answers->filter(function ($answer) {
+            return $answer->answer === $answer->question->answer;
+        });
 
-        $typeCounts = $answers->groupBy(function ($answer) {
+        $totalCorrect = $correctAnswers->count();
+
+        $typeCounts = $correctAnswers->groupBy(function ($answer) {
             return $answer->question->material->type;
         })->map->count();
 
-        $typePercentages = $typeCounts->map(function ($count) use ($totalAnswers) {
-            return round(($count / $totalAnswers) * 100, 2);
+        $typePercentages = $typeCounts->map(function ($count) use ($totalCorrect) {
+            return $totalCorrect > 0 ? round(($count / $totalCorrect) * 100, 2) : 0;
         });
 
         $predictedType = $typeCounts->sortDesc()->keys()->first();
@@ -70,7 +74,11 @@ class SiswaController extends Controller
     }
 
 
+    public function resetPrediksi()
+    {
+        Answer::where('user_id', Auth::id())->delete();
 
-
+        return redirect()->route('siswa.prediksi')->with('success', 'Prediksi berhasil direset.');
+    }
 
 }

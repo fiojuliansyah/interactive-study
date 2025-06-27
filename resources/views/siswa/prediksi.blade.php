@@ -50,7 +50,13 @@
 
                             <div class="mt-4">
                                 <h5>Prediksi Tipe Materi:</h5>
-                                <p>{{ $predictedType ? $predictedType : 'Tipe belum dapat diprediksi' }}</p>
+                                <p>
+                                    @if ($predictedType)
+                                        {{ $predictedType ? $predictedType : 'Tipe belum dapat diprediksi' }}
+                                    @else
+                                        Tidak bisa diprediksi.
+                                    @endif
+                                </p>
                             </div>
 
                             <div class="mt-4">
@@ -103,6 +109,12 @@
                                 </div>
                             @endif
 
+                        </div>
+                        <div class="mt-4">
+                            <form action="{{ route('siswa.reset.prediksi') }}" method="POST" onsubmit="return confirm('Yakin ingin mereset semua jawaban?')">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Reset Prediksi</button>
+                            </form>
                         </div>
                     </div>
                 </div>

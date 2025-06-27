@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/isi-kuisioner', [SiswaController::class, 'kuisioner'])->name('siswa.kuisioner'); 
         Route::get('/prediksi', [SiswaController::class, 'kuisionerHasil'])->name('siswa.prediksi'); 
         Route::post('/isi-kuisioner/submit', [SiswaController::class, 'kuisionerSubmit'])->name('siswa.kuisioner.submit'); 
+        Route::post('/siswa/prediksi/reset', [SiswaController::class, 'resetPrediksi'])->name('siswa.reset.prediksi');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
