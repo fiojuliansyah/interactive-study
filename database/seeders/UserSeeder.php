@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'name' => 'Siswa',
             'email' => 'siswa@gmail.com',
             'password' => Hash::make('password'),
+            'role' => 'siswa',
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),

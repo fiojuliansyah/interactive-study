@@ -9,6 +9,7 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
+        @if (Auth::user()->role == 'siswa')
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Siswa Page</h6>
         </li>
@@ -44,42 +45,43 @@
             <span class="nav-link-text ms-1">Akses Materi</span>
           </a>
         </li>
+        @endif
         @if (Auth::user()->role == 'admin')
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin Page</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <div class="fas fa-home"></div>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('students*') ? 'active' : '' }}" href="{{ route('students.index') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <div class="fas fa-users"></div>
-            </div>
-            <span class="nav-link-text ms-1">Kelola Data Siswa</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('questions*') ? 'active' : '' }}" href="{{ route('questions.index') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <div class="fas fa-file-alt"></div>
-            </div>
-            <span class="nav-link-text ms-1">Kelola Kuisioner</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('materials*') ? 'active' : '' }}" href="{{ route('materials.index') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <div class="fas fa-folder"></div>
-            </div>
-            <span class="nav-link-text ms-1">Kelola Materi</span>
-          </a>
-        </li>
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin Page</h6>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div class="fas fa-home"></div>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('students*') ? 'active' : '' }}" href="{{ route('students.index') }}">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div class="fas fa-users"></div>
+              </div>
+              <span class="nav-link-text ms-1">Kelola Data Siswa</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('questions*') ? 'active' : '' }}" href="{{ route('questions.index') }}">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div class="fas fa-file-alt"></div>
+              </div>
+              <span class="nav-link-text ms-1">Kelola Kuisioner</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('materials*') ? 'active' : '' }}" href="{{ route('materials.index') }}">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div class="fas fa-folder"></div>
+              </div>
+              <span class="nav-link-text ms-1">Kelola Materi</span>
+            </a>
+          </li>
         @endif
          <li class="nav-item text-center mt-4">
           <form action="{{ route('logout') }}" method="POST">
