@@ -71,119 +71,7 @@
 									</li>
 								</ul>
 		                        <div class="tab-content">
-		                            <div class="tab-pane active" id="materi">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h4 class="info-text">Ayo belajar Materi dahulu</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="row text-center">
-                                            @foreach ($materials as $materi)
-                                                <div class="col-md-4 mb-4">
-                                                    <div class="card h-100">
-                                                        <img src="https://www.dptraining.com.au/wp-content/uploads/2025/02/10161832.jpg" class="card-img-top" alt="Materi 1">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">{{ $materi->title }}</h5>
-                                                            <p class="card-text">{{ $materi->type }}</p>
-                                                            <a href="#" 
-                                                                class="btn btn-info" 
-                                                                data-toggle="modal" 
-                                                                data-target="#materiModal{{ $materi->id }}">
-                                                                Mulai Belajar
-                                                                </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal fade" id="materiModal{{ $materi->id }}" tabindex="-1" role="dialog" aria-labelledby="materiModalLabel{{ $materi->id }}">
-                                                    <div class="modal-dialog modal-lg" role="document">
-                                                        <div class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                <h4 class="modal-title" id="materiModalLabel{{ $materi->id }}">{{ $materi->title }}</h4>
-                                                            </div>
-
-                                                            <div class="modal-body">
-                                                                <p><strong>Tipe:</strong> {{ $materi->type }}</p>
-                                                                <p><strong>Konten:</strong> {{ $materi->content }}</p>
-
-                                                                @if ($materi->video)
-                                                                    <div class="mb-3">
-                                                                        <label><strong>Video:</strong></label><br>
-                                                                        <video width="100%" height="auto" controls>
-                                                                            <source src="{{ asset('storage/' . $materi->video) }}" type="video/mp4">
-                                                                            Browser Anda tidak mendukung video.
-                                                                        </video>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if ($materi->audio)
-                                                                    <div class="mb-3">
-                                                                        <label><strong>Audio:</strong></label><br>
-                                                                        <audio controls>
-                                                                            <source src="{{ asset('storage/' . $materi->audio) }}" type="audio/mpeg">
-                                                                            Browser Anda tidak mendukung audio.
-                                                                        </audio>
-                                                                    </div>
-                                                                @endif
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                                                <a href="#" class="btn btn-primary">Mulai Sekarang</a>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            @endforeach
-                                        </div>
-		                            </div>
-                                    {{-- <div class="tab-pane" id="kuisioner">
-                                        <h4 class="info-text mb-4">Harap diisi yaa!</h4>
-                                        <form id="kuisionerForm"  action="{{ route('siswa.kuisioner.submit') }}" method="POST">
-                                            @csrf
-
-                                            <div class="row" style="margin-left: 20px">
-                                                @foreach ($questions as $question)
-                                                    <div style="margin-bottom: 50px">
-                                                        <div class="p-3 border rounded shadow-sm h-100">
-                                                            <h5 class="font-weight-bold">{{ $loop->iteration }}. {{ $question->question }}</h5>
-                                                            <input type="hidden" name="questions[]" value="{{ $question->id }}">
-
-                                                            <div class="row">
-                                                                @foreach (['a', 'b', 'c', 'd'] as $opt)
-                                                                    <div class="col-sm-6 mt-2">
-                                                                        <label class="form-check-label d-block border rounded p-2 shadow-sm w-100">
-                                                                            <input 
-                                                                                class="form-check-input me-2" 
-                                                                                type="radio" 
-                                                                                name="answers[{{ $question->id }}]" 
-                                                                                value="{{ $opt }}" 
-                                                                                required
-                                                                            >
-                                                                            {{ strtoupper($opt) }}. {{ $question->{'option_' . $opt} }}
-                                                                        </label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-
-
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-fill btn-danger btn-wd">Kirim Jawaban</button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-		                            <div class="tab-pane" id="hasil-prediksi">
+		                            <div class="tab-pane active" id="hasil-prediksi">
                                         <div class="table-responsive">
                                             <h5 class="mb-3">Semua Jawaban</h5>
                                             <table class="table table-striped table-bordered">
@@ -287,13 +175,7 @@
                                             @endif
 
                                         </div>
-                                        <div class="mt-4">
-                                            <form action="{{ route('siswa.reset.prediksi') }}" method="POST" onsubmit="return confirm('Yakin ingin mereset semua jawaban?')">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Reset Prediksi</button>
-                                            </form>
-                                        </div>
-		                            </div> --}}
+		                            </div>
 		                        </div>
 	                        	<div class="wizard-footer">
 	                            	<div class="pull-right">
@@ -302,7 +184,10 @@
                                         @endguest
                                         
                                         @auth    
-                                            <a href="{{ route('siswa.kuisioner') }}" class="btn btn-fill btn-danger btn-wd" style="margin-left: 20px; margin-top: 10px">Next</a>
+                                            <form action="{{ route('siswa.reset.prediksi') }}" method="POST" onsubmit="return confirm('Yakin ingin mereset semua jawaban?')">
+                                                @csrf
+                                                <button type="submit" class="btn btn-fill btn-danger btn-wd">Reset Prediksi</button>
+                                            </form>
                                         @endauth
 	                                </div>
 	                                <div class="clearfix"></div>
@@ -311,7 +196,7 @@
 		                </div>
 		            </div> <!-- wizard container -->
 		        </div>
-	    	</div> <!-- row -->
+	    	</div>
 		</div>
 
 	</div>

@@ -12,9 +12,8 @@ class SiswaController extends Controller
 {
     public function dashboard()
     {
-        $materialCount = Material::count();
-        $questionCount = Question::count();
-        return view('siswa.dashboard',compact('materialCount', 'questionCount'));
+        $materials = Material::all();
+        return view('welcome',compact('materials'));
     }
 
     public function materi()
@@ -26,7 +25,7 @@ class SiswaController extends Controller
     public function kuisioner()
     {
         $questions = Question::all();
-        return view('siswa.kuisioner', compact('questions'));
+        return view('kuisioner', compact('questions'));
     }
 
     public function kuisionerSubmit(Request $request)
@@ -50,6 +49,8 @@ class SiswaController extends Controller
                         ->with('question.material')
                         ->get();
 
+        $allTypes = $answers->pluck('question.material.type')->unique();
+
         $correctAnswers = $answers->filter(function ($answer) {
             return $answer->answer === $answer->question->answer;
         });
@@ -60,8 +61,10 @@ class SiswaController extends Controller
             return $answer->question->material->type;
         })->map->count();
 
-        $typePercentages = $typeCounts->map(function ($count) use ($totalCorrect) {
-            return $totalCorrect > 0 ? round(($count / $totalCorrect) * 100, 2) : 0;
+        $typePercentages = collect($allTypes)->mapWithKeys(function ($type) use ($typeCounts, $totalCorrect) {
+            $count = $typeCounts[$type] ?? 0;
+            $percentage = $totalCorrect > 0 ? round(($count / $totalCorrect) * 100, 2) : 0;
+            return [$type => $percentage];
         });
 
         $predictedType = $typeCounts->sortDesc()->keys()->first();
@@ -70,9 +73,8 @@ class SiswaController extends Controller
             return $answer->answer !== $answer->question->answer;
         });
 
-        return view('siswa.prediksi', compact('answers', 'predictedType', 'typePercentages', 'wrongAnswers'));
+        return view('prediksi', compact('answers', 'predictedType', 'typePercentages', 'wrongAnswers'));
     }
-
 
     public function resetPrediksi()
     {

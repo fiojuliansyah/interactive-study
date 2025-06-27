@@ -8,9 +8,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SiswaController::class, 'dashboard'])->name('siswa.dashboard');
 
 
 Route::middleware('auth')->group(function () {

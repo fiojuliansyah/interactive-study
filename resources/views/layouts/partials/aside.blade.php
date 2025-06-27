@@ -14,7 +14,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Siswa Page</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('siswa.dashbard') ? 'active' : '' }}" href="{{ route('siswa.dashboard') }}">
+          <a class="nav-link {{ Route::is('siswa.dashbard') ? 'active' : '' }}" href="{{ route('siswa.dashboard') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <div class="fas fa-home"></div>
             </div>
@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('siswa.kuisioner') ? 'active' : '' }}" href="{{ route('siswa.kuisioner') }}">
+          <a class="nav-link {{ Route::is('siswa.kuisioner') ? 'active' : '' }}" href="{{ route('siswa.kuisioner') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <div class="fas fa-book-reader"></div>
             </div>
@@ -38,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('siswa.materi') ? 'active' : '' }}" href="{{ route('siswa.materi') }}">
+          <a class="nav-link {{ Route::is('siswa.materi') ? 'active' : '' }}" href="{{ route('siswa.materi') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <div class="fas fa-chalkboard-teacher"></div>
             </div>
@@ -51,7 +51,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin Page</h6>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+            <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
               <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <div class="fas fa-home"></div>
               </div>
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('students*') ? 'active' : '' }}" href="{{ route('students.index') }}">
+            <a class="nav-link {{ Route::is('students*') ? 'active' : '' }}" href="{{ route('students.index') }}">
               <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <div class="fas fa-users"></div>
               </div>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('questions*') ? 'active' : '' }}" href="{{ route('questions.index') }}">
+            <a class="nav-link {{ Route::is('questions*') ? 'active' : '' }}" href="{{ route('questions.index') }}">
               <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <div class="fas fa-file-alt"></div>
               </div>
@@ -75,7 +75,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('materials*') ? 'active' : '' }}" href="{{ route('materials.index') }}">
+            <a class="nav-link {{ Route::is('materials*') ? 'active' : '' }}" href="{{ route('materials.index') }}">
               <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <div class="fas fa-folder"></div>
               </div>
@@ -83,15 +83,25 @@
             </a>
           </li>
         @endif
-         <li class="nav-item text-center mt-4">
-          <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-danger" style="text-decoration: none;">
-              <div class="fas fa-sign-out-alt"></div>
-              <span class="nav-link-text ms-1">Logout</span>
-            </button>
-          </form>
-         </li>
       </ul>
+    </div>
+    <div class="sidenav-footer mx-3 ">
+      <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
+        <div class="full-background" style="background-image: url('/assets/img/curved-images/white-curved.jpg')"></div>
+        <div class="card-body text-start p-3 w-100">
+          <div class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
+            <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true" id="sidenavCardIcon"></i>
+          </div>
+          <div class="docs-info">
+            <h6 class="text-white up mb-0">Need help?</h6>
+            <p class="text-xs font-weight-bold">Please check our docs</p>
+            <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard" target="_blank" class="btn btn-white btn-sm w-100 mb-0">Documentation</a>
+          </div>
+        </div>
+      </div>
+      <form action="{{ route('logout') }}" method="POST">
+       @csrf
+        <button type="submit" class="btn btn-danger mt-3 w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree">Logout</button>
+      </form>
     </div>
   </aside>
