@@ -55,6 +55,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login')
+            ->with('success', 'Logout berhasil. Sampai jumpa lagi!');
     }
 }
