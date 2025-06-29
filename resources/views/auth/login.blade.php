@@ -2,53 +2,49 @@
 
 
 @section('content')
-    <main class="main-content">
-    <section>
-      <div class="page-header min-vh-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-              <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
-                </div>
-                <div class="card-body">
-                  <form method="POST" action="{{ route('login') }}">
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<img src="/home/assets/img/logo.png" alt="">
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url(https://wpvip.edutopia.org/wp-content/uploads/2024/12/hero_blog_Brain-Based-Learning_Teaching-Strategies_photo_iStock_2154414848_SeventyFour.jpg?w=2880&quality=85);">
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="d-flex">
+			      		<div class="w-100">
+			      			<h3 class="mb-4">Masuk</h3>
+			      		</div>
+								<div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div>
+			      	</div>
+              <form class="signin-form" method="POST" action="{{ route('login') }}">
                      @csrf
-                        <label>Email</label>
-                        <div class="mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
-                        </div>
-                        <label>Password</label>
-                        <div class="mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                        </div>
-                        <div class="text-center">
-                        <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
-                        </div>
-                  </form>
-                </div>
-                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-4 text-sm mx-auto">
-                    Don't have an account?
-                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
-                  </p>
-                </div> --}}
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/assets/img/curved-images/curved6.jpg')"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Email" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Masuk</button>
+                  </div>
+		          </form>
+		          <p class="text-center">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></p>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
 @endsection

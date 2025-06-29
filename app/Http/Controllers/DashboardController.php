@@ -17,4 +17,13 @@ class DashboardController extends Controller
         $adminCount = User::where('role', 'admin')->count();
         return view('dashboard',compact('materialCount', 'questionCount', 'studentCount', 'adminCount'));
     }
+
+    public function hasilSiswa()
+    {
+        $materialCount = Material::count();
+        $questionCount = Question::count();
+        $studentCount = User::where('role', 'siswa')->count();
+        $adminCount = User::where('role', 'admin')->count();
+        return view('dashboard',compact('materialCount', 'questionCount', 'studentCount', 'adminCount'));
+    }
 }
