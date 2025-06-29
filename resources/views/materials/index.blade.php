@@ -173,6 +173,11 @@
                 <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
+                       <div class="form-group">
+                            <label for="thumbnail">Thumbnail (opsional)</label>
+                            <input type="file" class="form-control" id="thumbnail" name="thumbnail">
+                        </div>
+
                         <div class="form-group">
                             <label for="title">Judul Materi</label>
                             <input type="text" class="form-control" id="title" name="title" required>
@@ -184,8 +189,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="category">Kategori</label>
-                            <select class="form-control" id="category" name="category">
+                            <label for="type">Tipe</label>
+                            <select class="form-control" id="type" name="type">
                                 <option value="visual">Visual</option>
                                 <option value="auditory">Auditory</option>
                                 <option value="kinesthetic">Kinesthetic</option>

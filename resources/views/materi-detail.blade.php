@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-1">{{ $material->title }}</h1>
-            <div class="d-inline-flex text-white mb-5">
-                <p class="m-0 text-uppercase"><a class="text-white" href="/">Beranda</a></p>
-                <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">{{ $material->title }}</p>
-            </div>
+    <div class="container text-center py-5">
+        <h1 class="text-white display-1">{{ $material->title }}</h1>
+        <div class="d-inline-flex text-white mb-5">
+            <p class="m-0 text-uppercase"><a class="text-white" href="/">Beranda</a></p>
+            <i class="fa fa-angle-double-right pt-1 px-3"></i>
+            <p class="m-0 text-uppercase">{{ $material->title }}</p>
         </div>
     </div>
+</div>
 
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -28,6 +28,8 @@
                                 Browser Anda tidak mendukung tag video.
                               </video>
                             </div>
+                            @elseif($material->thumbnail)
+                                <img class="img-fluid rounded w-100 mb-4" src="{{ asset('storage/' . $material->thumbnail) }}" alt="Image">
                             @else
                             <img class="img-fluid rounded w-100 mb-4" src="/home/assets/img/header.jpg" alt="Image">
                           @endif

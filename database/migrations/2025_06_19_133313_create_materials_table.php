@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
+            $table->string('thumbnail')->nullable();
             $table->string('title')->nullable();
             $table->string('video')->nullable();
             $table->string('sound')->nullable();

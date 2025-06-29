@@ -10,6 +10,7 @@ class Material extends Model
     use HasFactory;
     
     protected $fillable = [
+        'thumbnail',
         'title',
         'video',
         'sound',

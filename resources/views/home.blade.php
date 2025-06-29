@@ -33,32 +33,6 @@
                         <h1 class="display-4">Pilihan Utama untuk Belajar Interaktif di Mana Saja</h1>
                     </div>
                     <p>Kami menyediakan platform pembelajaran interaktif yang memungkinkan siapa pun untuk belajar secara fleksibel, kapan saja dan di mana saja. Dengan berbagai topik dan pengajar ahli, pengalaman belajar Anda akan semakin menyenangkan dan bermakna.</p>
-                    <div class="row pt-3 mx-0">
-                        <div class="col-3 px-0">
-                            <div class="bg-success text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Topik<span class="d-block">Tersedia</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-primary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Kursus<span class="d-block">Online</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-secondary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Instruktur<span class="d-block">Ahli</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-warning text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Siswa<span class="d-block">Bahagia</span></h6>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -115,17 +89,17 @@
         </div>
     </div>
 
-    <div class="container-fluid px-0 py-5">
-        <div class="row mx-0 justify-content-center pt-5">
-            <div class="col-lg-6">
-                <div class="section-title text-center position-relative mb-4">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Kursus Kami</h6>
-                    <h1 class="display-4">Lihat Rilisan Terbaru dari Kursus Kami</h1>
+    @guest
+        <div class="container-fluid px-0 py-5">
+            <div class="row mx-0 justify-content-center pt-5">
+                <div class="col-lg-6">
+                    <div class="section-title text-center position-relative mb-4">
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Kursus Kami</h6>
+                        <h1 class="display-4">Lihat Rilisan Terbaru dari Kursus Kami</h1>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        @guest
             <div class="row justify-content-center bg-image mx-0 mb-5">
                 <div class="col-lg-6 py-5">
                     <div class="bg-white p-5 my-5">
@@ -176,8 +150,8 @@
                     </div>
                 </div>
             </div>
-        @endguest
-    </div>
+        </div>
+    @endguest
 
 
     <div class="container-fluid py-5">
@@ -189,7 +163,11 @@
             <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
                 @foreach ($materials as $materi)
                     <div class="team-item">
-                        <img class="img-fluid w-100" src="https://img.freepik.com/premium-vector/digital-learning-environment-where-participants-study-online-through-interactive-tools-resources-online-education-business-training-concept-distance-courses_538213-148492.jpg" alt="">
+                        @if($material->thumbnail)
+                            <img class="img-fluid w-100" src="{{ asset('storage/' . $material->thumbnail) }}" alt="">
+                        @else
+                            <img class="img-fluid w-100" src="https://img.freepik.com/premium-vector/digital-learning-environment-where-participants-study-online-through-interactive-tools-resources-online-education-business-training-concept-distance-courses_538213-148492.jpg" alt="">
+                        @endif
                         <div class="bg-light text-center p-4">
                             <h5 class="mb-3">{{ $materi->title }}</h5>
                             <p class="mb-2">{{ $materi->type }}</p>
@@ -281,7 +259,7 @@
                 </div>
 
                 <!-- Formulir Kontak -->
-                <div class="col-lg-7">
+                {{-- <div class="col-lg-7">
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Butuh Bantuan?</h6>
                         <h1 class="display-4">Kirim Pesan Kepada Kami</h1>
@@ -307,7 +285,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/prediksi', [SiswaController::class, 'kuisionerHasil'])->name('siswa.prediksi'); 
         Route::post('/isi-kuisioner/submit', [SiswaController::class, 'kuisionerSubmit'])->name('siswa.kuisioner.submit'); 
         Route::post('/siswa/prediksi/reset', [SiswaController::class, 'resetPrediksi'])->name('siswa.reset.prediksi');
+        Route::get('/profil', [SiswaController::class, 'profile'])->name('siswa.profile'); 
+        Route::put('/profile', [SiswaController::class, 'updateProfile'])->name('siswa.profile.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

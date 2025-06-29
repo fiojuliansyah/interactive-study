@@ -12,7 +12,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">
-						<div class="img" style="background-image: url(/guest/assets/images/bg-1.jpg);">
+						<div class="img" style="background-image: url(https://wpvip.edutopia.org/wp-content/uploads/2024/12/hero_blog_Brain-Based-Learning_Teaching-Strategies_photo_iStock_2154414848_SeventyFour.jpg?w=2880&quality=85);">
 			      </div>
 						<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
@@ -41,12 +41,20 @@
                             <input type="text" class="form-control" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group mb-3">
+                            <label class="label" for="name">NIS</label>
+                            <input type="text" class="form-control" name="nis" placeholder="No NIS" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="name">Kelas</label>
+                            <input type="text" class="form-control" name="class" placeholder="class" required>
+                        </div>
+                        <div class="form-group mb-3">
                             <label class="label" for="password">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                         <div class="form-group mb-3">
                             <label class="label" for="password">Ulangi Password</label>
-                            <input type="password" class="form-control" name="confirm_password" placeholder="Ulangi Password" required>
+                            <input type="password" class="form-control" name="password_confirmation" placeholder="Ulangi Password" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary rounded submit px-3">Daftar</button>

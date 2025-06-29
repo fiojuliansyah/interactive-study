@@ -8,6 +8,7 @@ use App\Models\Question;
 use App\Models\Prediction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SiswaController extends Controller
@@ -87,56 +88,75 @@ class SiswaController extends Controller
     public function kuisionerHasil()
     {
         $answers = Answer::where('user_id', Auth::id())
-                        ->with('question.material')
-                        ->get();
+            ->with('question.material')
+            ->get();
 
         if ($answers->isEmpty()) {
             Alert::error('Prediksi Gagal', 'Anda belum mengisi kuisioner!');
-            return redirect()->route('siswa.kuisioner')->with('error', 'Anda belum mengisi kuisioner.');
+            return redirect()->route('siswa.kuisioner');
         }
 
-        $allTypes = $answers->pluck('question.material.type')->unique();
+        [$predictedType, $typeScores] = $this->predictUsingRuleBasedTree($answers);
 
-        $correctAnswers = $answers->filter(function ($answer) {
-            return $answer->answer === $answer->question->answer;
+        $totalCorrect = array_sum($typeScores);
+        $totalQuestions = $answers->count();
+        $totalWrong = $totalQuestions - $totalCorrect;
+
+        $typePercentages = collect($typeScores)->map(function ($count) use ($totalCorrect) {
+            return $totalCorrect > 0 ? round(($count / $totalCorrect) * 100, 2) : 0;
         });
-
-        $totalCorrect = $correctAnswers->count();
-
-        $typeCounts = $correctAnswers->groupBy(function ($answer) {
-            return $answer->question->material->type;
-        })->map->count();
-
-        $typePercentages = collect($allTypes)->mapWithKeys(function ($type) use ($typeCounts, $totalCorrect) {
-            $count = $typeCounts[$type] ?? 0;
-            $percentage = $totalCorrect > 0 ? round(($count / $totalCorrect) * 100, 2) : 0;
-            return [$type => $percentage];
-        });
-
-        $predictedType = $typeCounts->sortDesc()->keys()->first();
 
         $wrongAnswers = $answers->filter(function ($answer) {
             return $answer->answer !== $answer->question->answer;
         });
 
-        if ($totalCorrect > 0) {
-            Prediction::create([
-                'user_id' => Auth::id(),
-                'result' => $predictedType,
-                'visual' => $typePercentages->get('visual', 0),
-                'auditory' => $typePercentages->get('auditory', 0),
-                'kinesthetic' => $typePercentages->get('kinesthetic', 0),
-                'total_correct' => $totalCorrect,
-                'total_wrong' => $answers->count() - $totalCorrect,
-            ]);
+        Prediction::create([
+            'user_id' => Auth::id(),
+            'result' => $predictedType,
+            'visual' => $typePercentages->get('visual', 0),
+            'auditory' => $typePercentages->get('auditory', 0),
+            'kinesthetic' => $typePercentages->get('kinesthetic', 0),
+            'total_correct' => $totalCorrect,
+            'total_wrong' => $totalWrong,
+        ]);
+
+        $suggestedMaterials = Material::where('type', $predictedType)->get();
+
+        return view('prediksi', compact(
+            'answers',
+            'predictedType',
+            'typePercentages',
+            'wrongAnswers',
+            'suggestedMaterials'
+        ));
+    }
+
+
+    public function predictUsingRuleBasedTree($answers)
+    {
+        $typeScores = [
+            'visual' => 0,
+            'auditory' => 0,
+            'kinesthetic' => 0,
+        ];
+
+        foreach ($answers as $answer) {
+            $trueAnswer = $answer->question->answer;
+            $materialType = $answer->question->material->type;
+
+            if (isset($typeScores[$materialType])) {
+                if ($answer->answer === $trueAnswer) {
+                    $typeScores[$materialType] += 1;
+                }
+            }
         }
 
-        $suggestedMaterials = $predictedType 
-            ? Material::where('type', $predictedType)->get()
-            : collect();
+        arsort($typeScores);
+        $predictedType = array_key_first($typeScores);
 
-        return view('prediksi', compact('answers', 'predictedType', 'typePercentages', 'wrongAnswers', 'suggestedMaterials'));
+        return [$predictedType, $typeScores];
     }
+
 
     public function resetPrediksi()
     {
@@ -145,6 +165,40 @@ class SiswaController extends Controller
         Alert::success('Berhasil', 'Jawaban berhasil direset!');
 
         return redirect()->route('siswa.kuisioner')->with('success', 'Prediksi berhasil direset.');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+         return view('profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'nis' => 'nullable|string|max:255',
+            'class' => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        $user->name = $validated['name'];
+        $user->username = $validated['username'];
+        $user->email = $validated['email'];
+        $user->nis = $validated['nis'];
+        $user->class = $validated['class'];
+
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('siswa.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 
 }

@@ -18,13 +18,22 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'thumbnail' => 'nullable',
             'title' => 'nullable|string|max:255',
-            'video' => 'nullable|file|mimes:mp4,avi,mov',
-            'sound' => 'nullable|file|mimes:mp3,wav',
+            'video' => 'nullable',
+            'sound' => 'nullable',
             'content' => 'nullable|string',
             'type' => 'nullable|in:visual,auditory,kinesthetic',
             'admin_id' => 'nullable|string',
         ]);
+
+        $thumbnailPath = null;
+        if ($request->hasFile('thumbnail')) {
+            if ($thumbnailPath) {
+                Storage::disk('public')->delete($thumbnailPath);
+            }
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
 
         $videoPath = null;
         if ($request->hasFile('video')) {
@@ -37,11 +46,12 @@ class MaterialController extends Controller
         }
 
         Material::create([
+            'thumbnail' => $thumbnailPath,
             'title' => $request->input('title'),
             'video' => $videoPath,
             'sound' => $soundPath,
             'content' => $request->input('content'),
-            'type' => $request->input('type', 'visual'),
+            'type' => $request->input('type'),
             'admin_id' => Auth::id() ?? $request->input('admin_id'),
         ]);
 
@@ -51,13 +61,22 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         $request->validate([
+            'thumbnail' => 'nullable',
             'title' => 'nullable|string|max:255',
-            'video' => 'nullable|file|mimes:mp4,avi,mov',
-            'sound' => 'nullable|file|mimes:mp3,wav',
+            'video' => 'nullable',
+            'sound' => 'nullable',
             'content' => 'nullable|string',
             'type' => 'nullable|in:visual,auditory,kinesthetic',
             'admin_id' => 'nullable|string',
         ]);
+
+        $thumbnailPath = $material->thumbnail;
+        if ($request->hasFile('thumbnail')) {
+            if ($thumbnailPath) {
+                Storage::disk('public')->delete($thumbnailPath);
+            }
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
 
         $videoPath = $material->video;
         if ($request->hasFile('video')) {
@@ -78,6 +97,7 @@ class MaterialController extends Controller
         $adminId = Auth::user()->id;
 
         $material->update([
+            'thumbnail' => $thumbnailPath,
             'title' => $request->input('title'),
             'video' => $videoPath, 
             'sound' => $soundPath, 

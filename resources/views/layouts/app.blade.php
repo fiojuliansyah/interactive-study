@@ -87,7 +87,7 @@
                                     <i class="fa fa-home mr-2"></i> Dashboard
                                 </a>
                             @endif
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('siswa.profile') }}">
                                 <i class="fa fa-user mr-2"></i> Profil
                             </a>
                             @if (Auth::user()->role == 'siswa')  
@@ -146,33 +146,6 @@
                         <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
                         <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
                     </div>
-                </div>
-
-                <!-- Tautan Cepat -->
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Tautan Cepat</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Kebijakan Privasi</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Syarat & Ketentuan</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Pertanyaan Umum</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Bantuan & Dukungan</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Kontak</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">Interstudy</a>. All Rights Reserved.
-                    </p>
-                </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
-                    </p>
                 </div>
             </div>
         </div>
