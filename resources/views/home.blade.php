@@ -24,15 +24,16 @@
             <div class="row">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="/home/assets/img/about.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="/home/assets/img/smkn33.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Tentang Kami</h6>
-                        <h1 class="display-4">Pilihan Utama untuk Belajar Interaktif di Mana Saja</h1>
+                        <h1 class="display-4">Solusi Cerdas untuk Belajar Bahasa Indonesia Sesuai Gaya Belajar Anda</h1>
                     </div>
-                    <p>Kami menyediakan platform pembelajaran interaktif yang memungkinkan siapa pun untuk belajar secara fleksibel, kapan saja dan di mana saja. Dengan berbagai topik dan pengajar ahli, pengalaman belajar Anda akan semakin menyenangkan dan bermakna.</p>
+                    <p>Kami menghadirkan platform pembelajaran interaktif yang dirancang khusus untuk siswa SMK, dengan pendekatan berdasarkan prediksi gaya belajar (Visual, Auditori, Membaca/Menulis, dan Kinestetik).
+                        Dengan sistem yang menyesuaikan materi dan kuis sesuai kebutuhan belajar masing-masing siswa, Anda bisa belajar lebih efektif, kapan saja dan di mana saja. Dengan fitur yang menarik pemahaman materi Bahasa Indonesia akan menjadi lebih mudah, menyenangkan, dan bermakna.</p>
                 </div>
             </div>
         </div>
@@ -45,7 +46,7 @@
                 <div class="col-lg-7 my-5 pt-5 pb-lg-5">
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Mengapa Memilih Kami?</h6>
-                        <h1 class="display-4">Mengapa Anda Harus Mulai Belajar Bersama Kami?</h1>
+                        <h1 class="display-4">Belajar Bahasa Indonesia Lebih Personal dan Interaktif</h1>
                     </div>
                     <p class="mb-4 pb-2">Kami menawarkan pengalaman belajar yang interaktif, fleksibel, dan berkualitas tinggi. Dengan pengajar berpengalaman, sertifikasi internasional, dan kelas daring yang mudah diakses, proses belajar Anda menjadi lebih efektif dan menyenangkan.</p>
                     
@@ -54,8 +55,8 @@
                             <i class="fa fa-2x fa-graduation-cap text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>Instruktur Profesional</h4>
-                            <p>Kami menghadirkan pengajar berpengalaman dan ahli di bidangnya untuk memastikan materi tersampaikan dengan efektif dan mudah dipahami.</p>
+                            <h4>Prediksi Gaya Belajar Akurat</h4>
+                            <p>Melalui pengisian kuisioner sederhana di awal, sistem kami memprediksi gaya belajar Anda menggunakan pendekatan ilmiah. Hasil prediksi ini digunakan untuk menyusun materi dan aktivitas belajar yang paling cocok bagi Anda.</p>
                         </div>
                     </div>
                     
@@ -64,8 +65,8 @@
                             <i class="fa fa-2x fa-certificate text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>Sertifikat Internasional</h4>
-                            <p>Setiap peserta berkesempatan mendapatkan sertifikat bertaraf internasional sebagai pengakuan atas kompetensi yang dimiliki.</p>
+                            <h4>Materi Bahasa Indonesia Terstruktur</h4>
+                            <p>Materi disusun sesuai kurikulum Bahasa Indonesia SMK, mencakup teks naratif, argumentatif, eksplanasi, dan lainnya. Disajikan dalam berbagai bentuk—video, audio, simulasi—sesuai dengan gaya belajar masing-masing siswa.</p>
                         </div>
                     </div>
                     
@@ -74,15 +75,15 @@
                             <i class="fa fa-2x fa-book-reader text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>Kelas Daring Fleksibel</h4>
-                            <p class="m-0">Kapan saja dan di mana saja, Anda bisa mengakses kelas daring yang telah dirancang untuk mendukung pembelajaran yang fleksibel dan mandiri.</p>
+                            <h4>Pembelajaran Interaktif dan Adaptif</h4>
+                            <p class="m-0">Setiap siswa akan mendapatkan pengalaman belajar yang berbeda sesuai hasil prediksi. Platform ini mendukung pembelajaran mandiri dan kolaboratif, baik di kelas maupun secara daring.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="/home/assets/img/feature.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="/home/assets/img/sekolah1.jpeg" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -163,15 +164,13 @@
             <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
                 @foreach ($materials as $materi)
                     <div class="team-item">
-                        @if($material->thumbnail)
-                            <img class="img-fluid w-100" src="{{ asset('storage/' . $material->thumbnail) }}" alt="">
-                        @else
-                            <img class="img-fluid w-100" src="https://img.freepik.com/premium-vector/digital-learning-environment-where-participants-study-online-through-interactive-tools-resources-online-education-business-training-concept-distance-courses_538213-148492.jpg" alt="">
+                        @if($materi->thumbnail)
+                            <img class="img-fluid w-100" src="{{ asset('storage/' . $materi->thumbnail) }}" alt="Thumbnail">
                         @endif
                         <div class="bg-light text-center p-4">
                             <h5 class="mb-3">{{ $materi->title }}</h5>
                             <p class="mb-2">{{ $materi->type }}</p>
-                            <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
                                 <a class="btn btn-primary" href="{{ route('siswa.materi') }}">Lihat Selengkapnya</a>
                             </div>
                         </div>
@@ -189,29 +188,40 @@
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Testimoni</h6>
                         <h1 class="display-4">Apa Kata Para Siswa Kami</h1>
                     </div>
-                    <p class="m-0">Kami bangga dapat memberikan pengalaman belajar yang bermakna. Berikut adalah beberapa testimoni dari siswa kami yang merasakan langsung manfaat dari pembelajaran interaktif yang kami tawarkan.</p>
+                    <p class="m-0">Kami bangga dapat menghadirkan pengalaman belajar Bahasa Indonesia yang disesuaikan dengan gaya belajar masing-masing siswa. Berikut adalah beberapa testimoni dari siswa SMKN 33 Jakarta yang telah merasakan manfaat dari sistem prediksi gaya belajar dan materi interaktif yang kami kembangkan.</p>
                 </div>
                 <div class="col-lg-7">
                     <div class="owl-carousel testimonial-carousel">
                         <div class="bg-white p-5">
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Materi mudah dipahami dan instruktur sangat membantu. Saya bisa belajar dengan ritme saya sendiri dan tetap merasa didampingi. Pengalaman belajar yang luar biasa!</p>
+                            <p>Setelah mengikuti kuisioner, saya mendapatkan materi pembelajaran berupa video dan ilustrasi yang sangat membantu saya memahami isi teks Bahasa Indonesia. Saya jadi lebih mudah menangkap makna karena bisa melihat langsung visualnya.</p>
                             <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="img-fluid mr-4" src="/home/assets/img/testimonial-2.jpg" alt="">
+                                <img class="img-fluid mr-4" src="/home/assets/img/laras.jpg" alt="">
                                 <div>
-                                    <h5>Nama Siswa</h5>
-                                    <span>Desain Web</span>
+                                    <h5>Laras</h5>
+                                    <span>Kelas XI SMKN 33 JAKARTA</span>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-white p-5">
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Saya awalnya ragu belajar secara online, tapi platform ini sangat user-friendly dan interaktif. Setelah ikut kursus ini, saya jadi lebih percaya diri dalam bidang web development.</p>
+                            <p>Saya lebih nyaman belajar dengan mendengarkan penjelasan. Platform ini memberikan audio pembelajaran yang jelas dan mudah diikuti. Saya merasa seperti sedang didampingi guru secara langsung</p>
                             <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="img-fluid mr-4" src="/home/assets/img/testimonial-1.jpg" alt="">
+                                <img class="img-fluid mr-4" src="/home/assets/img/rafli.jpg" alt="">
                                 <div>
-                                    <h5>Nama Siswa</h5>
-                                    <span>Desain Web</span>
+                                    <h5>Rafli</h5>
+                                    <span>Kelas X SMKN 33 JAKARTA </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <p>Belajar di platform ini seru karena ada aktivitas interaktif seperti drag-and-drop dan simulasi. Saya tidak cepat bosan, dan materi Bahasa Indonesia jadi lebih mudah saya pahami.</p>
+                            <div class="d-flex flex-shrink-0 align-items-center mt-4">
+                                <img class="img-fluid mr-4" src="/home/assets/img/nanda.jpg" alt="">
+                                <div>
+                                    <h5>Nanda</h5>
+                                    <span>Kelas XI SMKN 33 Jakarta</span>
                                 </div>
                             </div>
                         </div>
@@ -222,72 +232,6 @@
     </div>
 
 
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <!-- Informasi Kontak -->
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-primary mr-4">
-                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Lokasi Kami</h4>
-                                <p class="m-0">123 Jalan Raya, Jakarta, Indonesia</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-secondary mr-4">
-                                <i class="fa fa-2x fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Hubungi Kami</h4>
-                                <p class="m-0">+62 812 3456 7890</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-icon bg-warning mr-4">
-                                <i class="fa fa-2x fa-envelope text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Email Kami</h4>
-                                <p class="m-0">info@contoh.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulir Kontak -->
-                {{-- <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Butuh Bantuan?</h6>
-                        <h1 class="display-4">Kirim Pesan Kepada Kami</h1>
-                    </div>
-                    <div class="contact-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Nama Anda" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Email Anda" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Subjek" required="required">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" placeholder="Pesan Anda" required="required"></textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Kirim Pesan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
-            </div>
-        </div>
-    </div>
+    
 
 @endsection

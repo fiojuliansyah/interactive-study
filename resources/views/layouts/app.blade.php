@@ -68,7 +68,7 @@
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
                     <a href="{{ route('siswa.dashboard') }}" class="nav-item nav-link {{ Route::is('siswa.dashboard') ? 'active' : '' }}">Beranda</a>
-                    <a href="{{ route('siswa.materi') }}" class="nav-item nav-link {{ Route::is('siswa.materi') ? 'active' : '' }}">Materi</a>
+                    <!-- <a href="{{ route('siswa.materi') }}" class="nav-item nav-link {{ Route::is('siswa.materi') ? 'active' : '' }}">Materi</a> -->
                     <a href="{{ route('siswa.kuisioner') }}" class="nav-item nav-link {{ Route::is('siswa.kuisioner') ? 'active' : '' }}">Kuisioner</a>
                     <a href="{{ route('siswa.prediksi') }}" class="nav-item nav-link {{ Route::is('siswa.prediksi') ? 'active' : '' }}">Hasil Prediksi</a>
                 </div>
@@ -115,12 +115,12 @@
                     <a href="index.html" class="navbar-brand">
                         <img src="/home/assets/img/logo.png" alt="" width="60%">
                     </a>
-                    <p class="m-0">Kami berkomitmen untuk memberikan pengalaman belajar interaktif terbaik. Dengan dukungan pengajar ahli dan platform yang mudah digunakan, kami hadir untuk mendampingi Anda meraih impian melalui pendidikan.</p>
+                    <p class="m-0">Kami berkomitmen untuk menghadirkan pengalaman belajar Bahasa Indonesia yang interaktif dan adaptif. Dengan sistem prediksi gaya belajar yang terintegrasi dan materi yang disesuaikan dengan kebutuhan siswa, platform ini dirancang untuk mendukung peningkatan pemahaman siswa secara optimal dan personal.</p>
                 </div>
 
                 <!-- Newsletter -->
                 <div class="col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Berlangganan Newsletter</h3>
+                    <h3 class="text-white mb-4">SMKN 33 JAKARTA</h3>
                     <div class="w-100">
                         <div class="input-group">
                             <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Alamat Email Anda">
@@ -137,9 +137,9 @@
                 <!-- Kontak -->
                 <div class="col-md-4 mb-5">
                     <h3 class="text-white mb-4">Hubungi Kami</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"></i>123 Jalan Raya, Jakarta, Indonesia</p>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Kelapa Gading, Jakarta, Indonesia</p>
                     <p><i class="fa fa-phone-alt mr-2"></i>+62 812 3456 7890</p>
-                    <p><i class="fa fa-envelope mr-2"></i>hello@interstudy.com</p>
+                    <p><i class="fa fa-envelope mr-2"></i>smkn33@gmail.com</p>
                     <div class="d-flex justify-content-start mt-4">
                         <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
                         <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
