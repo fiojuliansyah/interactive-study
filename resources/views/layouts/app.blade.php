@@ -68,9 +68,9 @@
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
                     <a href="{{ route('siswa.dashboard') }}" class="nav-item nav-link {{ Route::is('siswa.dashboard') ? 'active' : '' }}">Beranda</a>
-                    <!-- <a href="{{ route('siswa.materi') }}" class="nav-item nav-link {{ Route::is('siswa.materi') ? 'active' : '' }}">Materi</a> -->
                     <a href="{{ route('siswa.kuisioner') }}" class="nav-item nav-link {{ Route::is('siswa.kuisioner') ? 'active' : '' }}">Kuisioner</a>
                     <a href="{{ route('siswa.prediksi') }}" class="nav-item nav-link {{ Route::is('siswa.prediksi') ? 'active' : '' }}">Hasil Prediksi</a>
+                    <a href="{{ route('siswa.materi') }}" class="nav-item nav-link {{ Route::is('siswa.materi') ? 'active' : '' }}">Materi</a> 
                 </div>
                 @guest 
                     <a href="{{ route('login') }}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
