@@ -14,18 +14,28 @@
 					<div class="wrap d-md-flex">
 						<div class="img" style="background-image: url(https://wpvip.edutopia.org/wp-content/uploads/2024/12/hero_blog_Brain-Based-Learning_Teaching-Strategies_photo_iStock_2154414848_SeventyFour.jpg?w=2880&quality=85);">
 			      </div>
-						<div class="login-wrap p-4 p-md-5">
+				<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
 			      		<div class="w-100">
 			      			<h3 class="mb-4">Masuk</h3>
 			      		</div>
-								<div class="w-100">
-									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-									</p>
-								</div>
+						<div class="w-100">
+							<p class="social-media d-flex justify-content-end">
+								<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+								<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+							</p>
+						</div>
 			      	</div>
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
               <form class="signin-form" method="POST" action="{{ route('login') }}">
                      @csrf
                   <div class="form-group mb-3">

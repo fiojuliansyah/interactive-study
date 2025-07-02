@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Auth\LoginRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,23 +25,38 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            // Proses autentikasi
+            $request->authenticate();
 
-        $request->session()->regenerate();
+            // Regenerasi sesi untuk meningkatkan keamanan
+            $request->session()->regenerate();
 
-        $user = Auth::user();
+            // Ambil user yang sedang login
+            $user = Auth::user();
 
-        if ($user->role === 'siswa') {
-            return redirect()->route('siswa.dashboard')
-                            ->with('success', 'Login berhasil. Selamat datang, Siswa!');
-        } elseif ($user->role === 'admin') {
-            return redirect()->route('dashboard')
-                            ->with('success', 'Login berhasil. Selamat datang, Admin!');
+            // Cek peran user dan arahkan sesuai dengan role
+            if ($user->role === 'siswa') {
+                Alert::success('Berhasil', 'Berhasil Login!');
+                return redirect()->route('siswa.dashboard')
+                                ->with('success', 'Login berhasil. Selamat datang, Siswa!');
+            } elseif ($user->role === 'admin') {
+                Alert::success('Berhasil', 'Berhasil Login!');
+                return redirect()->route('dashboard')
+                                ->with('success', 'Login berhasil. Selamat datang, Admin!');
+            }
+
+            // Jika role tidak dikenali
+            return redirect('/')
+                ->with('error', 'Role tidak dikenali. Hubungi administrator.');
+
+        } catch (\Exception $e) {
+            // Menangani error yang mungkin terjadi selama autentikasi
+            return redirect()->back()
+                ->withErrors(['login_error' => 'Gagal melakukan login. Periksa kembali kredensial Anda.']);
         }
-
-        return redirect('/')
-            ->with('error', 'Role tidak dikenali. Hubungi administrator.');
     }
+
 
 
 
