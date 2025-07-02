@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'material_id',
+        'type',
         'question',
         'answer',
         'option_a',
@@ -18,9 +18,4 @@ class Question extends Model
         'option_c',
         'option_d',
     ];
-
-    public function material()
-    {
-        return $this->belongsTo(Material::class);
-    }
 }

@@ -43,7 +43,7 @@
                           @endif
                         <p>{{ $material->content }}</p>
                     </div>
-
+{{-- 
                     <div class="bg-primary mb-5 py-3">
                         <h3 class="text-white py-3 px-4 m-0">Kuisioner</h3>
                         <div class="d-flex justify-content-between border-bottom px-4">
@@ -65,7 +65,7 @@
                         <div class="py-3 px-4">
                             <a class="btn btn-block btn-info py-3 px-5" href="{{ route('siswa.kuisioner') }}">Kuisioner</a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <h2 class="mb-3">Materi Lainnya</h2>
                     <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">

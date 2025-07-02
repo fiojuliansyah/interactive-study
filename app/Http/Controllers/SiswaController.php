@@ -35,31 +35,28 @@ class SiswaController extends Controller
     {
         $material = Material::findOrFail($id);
         $materials = Material::all();
-        $questionCount = Question::count();
+        // $questionCount = Question::count();
 
-        $visualCount = Question::where('material_id', $material->id)
-            ->whereHas('material', function($query) {
-                $query->where('type', 'visual');
-            })
-            ->count();
+        // $visualCount = Question::where('material_id', $material->id)
+        //     ->whereHas('material', function($query) {
+        //         $query->where('type', 'visual');
+        //     })
+        //     ->count();
 
-        $auditoryCount = Question::where('material_id', $material->id)
-            ->whereHas('material', function($query) {
-                $query->where('type', 'auditory');
-            })
-            ->count();
+        // $auditoryCount = Question::where('material_id', $material->id)
+        //     ->whereHas('material', function($query) {
+        //         $query->where('type', 'auditory');
+        //     })
+        //     ->count();
 
-        $kinestheticCount = Question::where('material_id', $material->id)
-            ->whereHas('material', function($query) {
-                $query->where('type', 'kinesthetic');
-            })
-            ->count();
+        // $kinestheticCount = Question::where('material_id', $material->id)
+        //     ->whereHas('material', function($query) {
+        //         $query->where('type', 'kinesthetic');
+        //     })
+        //     ->count();
 
-        return view('materi-detail', compact('material', 'materials', 'questionCount', 'visualCount', 'auditoryCount', 'kinestheticCount'));
+        return view('materi-detail', compact('material', 'materials'));
     }
-
-
-
 
 
     public function kuisioner()
@@ -88,7 +85,7 @@ class SiswaController extends Controller
     public function kuisionerHasil()
     {
         $answers = Answer::where('user_id', Auth::id())
-            ->with('question.material')
+            ->with('question')
             ->get();
 
         if ($answers->isEmpty()) {
@@ -142,7 +139,7 @@ class SiswaController extends Controller
 
         foreach ($answers as $answer) {
             $trueAnswer = $answer->question->answer;
-            $materialType = $answer->question->material->type;
+            $materialType = $answer->question->type;
 
             if (isset($typeScores[$materialType])) {
                 if ($answer->answer === $trueAnswer) {
