@@ -32,34 +32,48 @@
         <form id="kuisionerForm" action="{{ route('siswa.kuisioner.submit') }}" method="POST">
             @csrf
 
-            @foreach ($questions as $question)
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="font-weight-bold mb-3">{{ $loop->iteration }}. {{ $question->question }}</h5>
-                        <input type="hidden" name="questions[]" value="{{ $question->id }}">
+        @foreach ($questions as $question)
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="font-weight-bold mb-3">{{ $loop->iteration }}. {{ $question->question }}</h5>
+                    <input type="hidden" name="questions[]" value="{{ $question->id }}">
 
-                        <div class="row">
-                            @foreach (['a', 'b', 'c', 'd'] as $opt)
-                                <div class="col-md-6 mt-2">
-                                    <div class="form-check">
-                                        <input
-                                            class="form-check-input"
-                                            type="radio"
-                                            name="answers[{{ $question->id }}]"
-                                            id="question_{{ $question->id }}_{{ $opt }}"
-                                            value="{{ $opt }}"
-                                            required
-                                        >
-                                        <label class="form-check-label" for="question_{{ $question->id }}_{{ $opt }}">
-                                            <strong>{{ strtoupper($opt) }}.</strong> {{ $question->{'option_' . $opt} }}
-                                        </label>
-                                    </div>
+                    <div class="row">
+                        @php
+                            $options = ['a', 'b', 'c', 'd'];
+                            $availableOptions = [];
+                            
+                            foreach ($options as $opt) {
+                                if (!empty($question->{'option_' . $opt})) {
+                                    $availableOptions[] = $opt;
+                                }
+                            }
+                        @endphp
+
+                        @foreach ($availableOptions as $opt)
+                            <div class="col-md-6 mt-2">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="answers[{{ $question->id }}]"
+                                        id="question_{{ $question->id }}_{{ $opt }}"
+                                        value="{{ $opt }}"
+                                        required
+                                    >
+                                    <label class="form-check-label" for="question_{{ $question->id }}_{{ $opt }}">
+                                        @if (count($availableOptions) > 2)
+                                            <strong>{{ strtoupper($opt) }}.</strong> 
+                                        @endif
+                                        {{ $question->{'option_' . $opt} }}
+                                    </label>
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            @endforeach
+            </div>
+        @endforeach
 
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary px-5 py-2">
