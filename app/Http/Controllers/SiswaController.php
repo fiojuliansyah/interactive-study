@@ -128,7 +128,6 @@ class SiswaController extends Controller
         ));
     }
 
-
     public function predictUsingRuleBasedTree($answers)
     {
         $typeScores = [
@@ -153,7 +152,6 @@ class SiswaController extends Controller
 
         return [$predictedType, $typeScores];
     }
-
 
     public function resetPrediksi()
     {

@@ -36,7 +36,7 @@
                             <th>No</th>
                             <th>Pertanyaan</th>
                             <th>Pilihan Anda</th>
-                            <th>Hasil</th>
+                            {{-- <th>Hasil</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -53,13 +53,13 @@
                                         @default -
                                     @endswitch
                                 </td>
-                                <td>
+                                {{-- <td>
                                     @if ($answer->question->answer == $answer->answer)
                                         <span class="badge badge-success px-3 py-1">Benar</span>
                                     @else
                                         <span class="badge badge-danger px-3 py-1">Salah</span>
                                     @endif
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -121,7 +121,7 @@
             </div>
         </div>
 
-        @if ($wrongAnswers->count() > 0)
+        {{-- @if ($wrongAnswers->count() > 0)
             <div class="card shadow-sm mt-5">
                 <div class="card-header bg-danger text-white">
                     <h5 class="mb-0">Pertanyaan yang Dijawab Salah</h5>
@@ -158,11 +158,11 @@
                 </div>
             </div>
         @else
-            {{-- <div class="alert alert-success mt-5 text-center">
+            <div class="alert alert-success mt-5 text-center">
                 <h5 class="mb-2">Selamat!</h5>
                 <p class="mb-0">Semua jawaban Anda benar.</p>
-            </div> --}}
-        @endif
+            </div>
+        @endif --}}
 
         <form class="mt-4" action="{{ route('siswa.reset.prediksi') }}" method="POST" onsubmit="return confirm('Yakin ingin mereset semua jawaban?')">
             @csrf
