@@ -53,8 +53,8 @@
                                         <th>Visual</th>
                                         <th>Auditori</th>
                                         <th>Kinestetik</th>
-                                        <th>Jawaban Benar</th>
-                                        <th>Jawaban Salah</th>
+                                        {{-- <th>Jawaban Benar</th>
+                                        <th>Jawaban Salah</th> --}}
                                         <th>Hasil</th>
                                         <th>
 
@@ -69,8 +69,8 @@
                                         <td>{{ $prediction->visual ?? '' }}%</td>
                                         <td>{{ $prediction->auditory ?? '' }}%</td>
                                         <td>{{ $prediction->kinesthetic ?? '' }}%</td>
-                                        <td>{{ $prediction->total_correct ?? '' }} Soal</td>
-                                        <td>{{ $prediction->total_wrong ?? '' }} Soal</td>
+                                        {{-- <td>{{ $prediction->total_correct ?? '' }} Soal</td>
+                                        <td>{{ $prediction->total_wrong ?? '' }} Soal</td> --}}
                                         <td>{{ $prediction->result ?? '' }}</td>
                                         <td>
                                             <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepredictionModal{{ $prediction->id }}">Hapus</button>
