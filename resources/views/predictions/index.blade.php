@@ -86,7 +86,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        <p>Apakah Anda yakin ingin menghapus hasil prediksi <strong>{{ $prediction->user->name }}</strong>?</p>
+                                                        <p>Apakah Anda yakin ingin menghapus hasil prediksi <strong>{{ $prediction->user->name ?? '' }}</strong>?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
