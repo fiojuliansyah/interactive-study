@@ -91,7 +91,11 @@
                         @foreach ($suggestedMaterials as $material)
                         <div class="col-lg-4 col-md-6 pb-4">
                             <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="{{ route('siswa.materi.detail', $material->id) }}">
-                                <img class="img-fluid" src="/home/assets/img/courses-1.jpg" alt="">
+                                @if($material->thumbnail)
+                                <img class="img-fluid" src="{{ asset('storage/' . $material->thumbnail) }}" alt="">
+                                @else
+                                    <img class="img-fluid" src="/home/assets/img/courses-1.jpg" alt="">
+                                @endif
                                 <div class="courses-text">
                                     <h4 class="text-center text-white px-3">{{ $material->title }}</h4>
                                     <div class="border-top w-100 mt-3">

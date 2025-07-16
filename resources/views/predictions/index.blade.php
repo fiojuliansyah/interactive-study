@@ -64,14 +64,14 @@
                                 <tbody>
                                     @foreach ($predictions as $prediction)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $prediction->user->name }}</td>
-                                        <td>{{ $prediction->visual }}%</td>
-                                        <td>{{ $prediction->auditory }}%</td>
-                                        <td>{{ $prediction->kinesthetic }}%</td>
-                                        <td>{{ $prediction->total_correct }} Soal</td>
-                                        <td>{{ $prediction->total_wrong }} Soal</td>
-                                        <td>{{ $prediction->result }}</td>
+                                        <td>{{ $loop->iteration ?? '' }}</td>
+                                        <td>{{ $prediction->user->name ?? '' }}</td>
+                                        <td>{{ $prediction->visual ?? '' }}%</td>
+                                        <td>{{ $prediction->auditory ?? '' }}%</td>
+                                        <td>{{ $prediction->kinesthetic ?? '' }}%</td>
+                                        <td>{{ $prediction->total_correct ?? '' }} Soal</td>
+                                        <td>{{ $prediction->total_wrong ?? '' }} Soal</td>
+                                        <td>{{ $prediction->result ?? '' }}</td>
                                         <td>
                                             <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepredictionModal{{ $prediction->id }}">Hapus</button>
                                         </td>
