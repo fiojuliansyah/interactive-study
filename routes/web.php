@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('materials', MaterialController::class);
         Route::resource('questions', QuestionController::class);
         Route::resource('students', StudentController::class);
+        Route::get('predictions/export', [PredictionController::class, 'export'])->name('predictions.export');
         Route::resource('predictions', PredictionController::class);
         
     });

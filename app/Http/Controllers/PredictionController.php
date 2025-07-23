@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Prediction;
 use Illuminate\Http\Request;
+use App\Exports\PredictionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PredictionController extends Controller
 {
@@ -65,5 +67,10 @@ class PredictionController extends Controller
         $prediction->delete();
 
         return redirect()->back()->with('success', 'Hasil Prediksi Berhasil Dihapus');
+    }
+
+    public function export()
+    {
+        return Excel::download(new PredictionsExport, 'predictions.xlsx');
     }
 }

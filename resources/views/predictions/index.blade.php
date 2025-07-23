@@ -27,9 +27,13 @@
                 <input type="text" class="form-control" placeholder="Type here...">
                 </div>
             </div>
-            <ul class="navbar-nav  justify-content-end">
+            <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href=#">Search</a>
+                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Search</a>
+                </li>
+                <!-- Tombol Export -->
+                <li class="nav-item d-flex align-items-center">
+                    <a href="{{ route('predictions.export') }}" class="btn btn-success btn-sm mb-0 me-3">Export Predictions</a>
                 </li>
             </ul>
             </div>

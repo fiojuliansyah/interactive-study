@@ -62,9 +62,7 @@
                   <tbody>
                     @foreach ($materials as $material)
                         <tr>
-                            <td>
-                                {{ $material->id }}
-                            </td>
+                            <td>{{ $loop->iteration ?? '' }}</td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0">{{ $material->title }}</p>
                             </td>
